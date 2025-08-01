@@ -8,3 +8,13 @@ print(mytuple)
 # IF you want access element
 item = mytuple[0]
 print(item)
+
+mytuple[0] = "Low" # this is not possible because tuple is immutable
+
+for i in mytuple:
+    print(i)
+
+if "max" in mytuple:
+    print("yes")
+else:
+    print("no")
