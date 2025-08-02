@@ -5,7 +5,7 @@
 mytuple = tuple(["max", 28, "Boston"]) #we can create tuple using tuple built in function
 # print(mytuple)
 
-# IF you want access element
+# IF you want access element (indexing)
 item = mytuple[0]
 # print(item)
 
@@ -48,7 +48,8 @@ print(i2) #This will take middle remaing elements as array
 
 import sys
 my_list1 = [0,1,2,"hello",True]
-my_tuple = (0,1,2,"hello",True)
+my_tuple = (0,1,2,"hello",True) #If you are working with large data you should use tuple, python internally optize tuple
+
 
 print(sys.getsizeof(my_list1), "bytes")
 print(sys.getsizeof(my_tuple), "bytes")
