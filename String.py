@@ -1,0 +1,1 @@
+# Stings: ordered, immutable , text representation
