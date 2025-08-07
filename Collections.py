@@ -1,4 +1,4 @@
-#Collections: Counter, namedtuple, OrderedDict, defaultdict, deque
+#Collections: Counter, namedtuple, OrderedDict, defaultdict, deque, ChainMap
 from collections import Counter
 
 # arr = [1,2,1,2,3,3,3,2,1,3,1,3,5,3]
@@ -63,7 +63,71 @@ for i in arr:
 # d.clear()
 d.extend([4,5,6])
 d.extendleft([-3,-2,-1,0])
-print(d)
+# print(d)
 d.rotate(1) # Rotete to the right side
-d.rotate(-2) # this will rotate to left right 2 time
-print(d)
+d.rotate(-2) # this will rotate to left side two time
+# print(d)
+
+from collections import ChainMap # combine multiple dictionaries into one view
+
+# d1: dict[str, int] = {'a': 1, 'b': 2}
+# d2: dict[str, int] = {'b': 3, 'c': 4}
+
+# print(d1 | d2)
+
+# cm = ChainMap({},d1, d2)
+# # print(cm['b']) #OUTPUT 2, only refer to first dict
+# cm['y'] = -1
+# cm['x'] = 2
+
+# print(cm)  #OUTPUT ChainMap({'y': -1, 'x': 2}, {'a': 1, 'b': 2}, {'b': 3, 'c': 4})
+
+# CHAINMAP USING CONSTRUCTOR
+
+# names: list[str] = ['Bob', 'Sandra']
+# cm: ChainMap[str, None] = ChainMap.fromkeys(names, None)
+
+# print(cm) #OUTPUT: ChainMap({'Bob': None, 'Sandra': None})
+# cm.update({'Luigi': None})
+# print(cm) #OUTPUT: ChainMap({'Bob': None, 'Sandra': None, 'Luigi': None})
+
+# default_setting: dict[str, str | bool] = {
+#     'theme': 'light',
+#     'language': 'English',
+#     'notifications': True
+# }
+
+# user_preferences: dict[str, str | bool] = {
+#     'theme': 'Dark',
+#     'notifications': False
+# }
+
+# preferences: ChainMap[str, str | bool] = ChainMap(user_preferences, default_setting)
+
+# print(preferences)
+
+
+# d1: dict[str, int] = {'a': 1, 'b': 2}
+# d2: dict[str, int] = {'b': 3, 'c': 4}
+
+# cm: ChainMap[str, int] = ChainMap(d1, d2)
+
+# cm.maps.append({'y': 5, 'z': 6}) # this will on index level
+# print(cm) #OUTPUT: ChainMap({'a': 1, 'b': 2}, {'b': 3, 'c': 4}, {'y': 5, 'z': 6})
+
+# # cm.update({'y': 5, 'z': 6}) # this will update first dict
+# # print(cm) #OUTPUT: ChainMap({'a': 1, 'b': 2, 'y': 5, 'z': 6}, {'b': 3, 'c': 4})
+
+# # WE CAN UPDATE THE VALUE OF ANY DICT 
+# cm.maps[1].update({'q': 20})
+# print(cm) #OUTPUT: ChainMap({'a': 1, 'b': 2}, {'b': 3, 'c': 4, 'q': 20}, {'y': 5, 'z': 6})
+
+d1: dict[str, int] = {'a': 1, 'b': 2}
+d2: dict[str, int] = {'b': 3, 'c': 4}
+d3: dict[str, int] = {'d': 5, 'e': 6}
+
+cm: ChainMap[str, int] = ChainMap(d1, d2, d3)
+print(cm.parents) #OUTPUT ChainMap({'b': 3, 'c': 4}, {'d': 5, 'e': 6}) Everything is parents of first dict
+
+cm = cm.new_child({'AA': 1, 'BB': 2}) # THIS WILL RETURN THE NEW CHAINMAP WITH ADDED NEW CHILD
+print(cm) #OUTPUT ChainMap({'AA': 1, 'BB': 2}, {'a': 1, 'b': 2}, {'b': 3, 'c': 4}, {'d': 5, 'e': 6})
