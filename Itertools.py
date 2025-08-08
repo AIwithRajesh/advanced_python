@@ -46,7 +46,7 @@ ice_cream: list[str] = ['Vanilla', "Strawberry", "Chocolate"]
 
 com_wr = combinations_with_replacement(ice_cream, 2)
 # ALL THE COMBINATIONS WITH REPEAT VALUES
-print(list(com_wr))
+# print(list(com_wr))
 #OUTPUT: [
 #     ('Vanilla', 'Vanilla'),
 #     ('Vanilla', 'Strawberry'),
@@ -55,3 +55,11 @@ print(list(com_wr))
 #     ('Strawberry', 'Chocolate'),
 #     ('Chocolate', 'Chocolate')
 # ]
+
+from itertools import accumulate
+
+savings: list[int] = [100, 200, 300, 400]
+
+acc: accumulate = accumulate(savings)
+
+print(list(acc))
