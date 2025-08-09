@@ -57,9 +57,10 @@ com_wr = combinations_with_replacement(ice_cream, 2)
 # ]
 
 from itertools import accumulate
+import operator
+savings: list[int] = [1,2,5,3,4]
 
-savings: list[int] = [100, 200, 300, 400]
-
-acc: accumulate = accumulate(savings)
+# acc: accumulate = accumulate(savings, func=operator.mul) #OUTPUT: [1, 2, 10, 30, 120]
+acc: accumulate = accumulate(savings, func=max) #OUTPUT: [1, 2, 5, 5, 5]
 
 print(list(acc))
