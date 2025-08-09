@@ -56,11 +56,48 @@ com_wr = combinations_with_replacement(ice_cream, 2)
 #     ('Chocolate', 'Chocolate')
 # ]
 
-from itertools import accumulate
-import operator
-savings: list[int] = [1,2,5,3,4]
+# from itertools import accumulate
+# import operator
+# savings: list[int] = [1,2,5,3,4]
 
-# acc: accumulate = accumulate(savings, func=operator.mul) #OUTPUT: [1, 2, 10, 30, 120]
-acc: accumulate = accumulate(savings, func=max) #OUTPUT: [1, 2, 5, 5, 5]
+# # acc: accumulate = accumulate(savings, func=operator.mul) #OUTPUT: [1, 2, 10, 30, 120]
+# acc: accumulate = accumulate(savings, func=max) #OUTPUT: [1, 2, 5, 5, 5]
 
-print(list(acc))
+# print(list(acc))
+
+
+from itertools import groupby
+# a: list[int] = [1,2,3,4]
+
+# def smaller_then_3(x):
+#     return x < 3
+
+# group_obj: groupby = groupby(a, key=lambda x: x < 3)
+# for key, value in group_obj:
+#     print(key, list(value))
+
+persons: list[object] = [
+    {'name': 'Tim', 'age': 25},
+    {'name': 'Lisa', 'age': 25},
+    {'name': 'Lisa', 'age': 27},
+    {'name': 'Claire', 'age': 28}
+]
+
+group_obj: groupby = groupby(persons, key=lambda x: x['age'])
+for key, value in group_obj:
+    print(key, list(value))
+
+
+from itertools import count , cycle, repeat
+
+# for i in count(10):
+#     if i == 20:
+#         break
+#     print(i)
+
+a = [1,2,3]
+# for i in cycle(a): # Infinite cycle after printing 1,2,3 and so
+#     print(i)
+
+for i in repeat(a, 4): #it's repeat 4 times 
+    print(i)
