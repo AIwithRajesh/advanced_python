@@ -1,9 +1,12 @@
 
-# for i in count(10):
-#     if i == 20:
-#         break
-#     print(i)
-
-# a = [1,2,3]
-# for i in cycle(a): # Infinite cycle after printing 1,2,3 and so
-#     print(i)
+# try:
+#     a = 5/1
+#     b = a + '10'
+# except ZeroDivisionError as e:
+#     print('an error',e)
+# except TypeError as e:
+#     print('type error', e)
+# else:
+#     print('everything is fine')
+# finally:
+#     print('cleaning..')
