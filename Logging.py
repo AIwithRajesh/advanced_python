@@ -27,5 +27,5 @@ file_h.setFormatter(formatter)
 logger.addHandler(stream_h)
 logger.addHandler(file_h)
 
-logging.warning('This is a warning')
-logging.error('This is a error')
+logger.warning('This is a warning')
+logger.error('This is a error')
