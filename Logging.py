@@ -1,5 +1,6 @@
 import logging
-
+import time
+from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 # logging.debug('This is debug message')
@@ -8,7 +9,7 @@ import logging
 # logging.error('This is an error message')
 # logging.critical('This is critical message')
 
-# logger = logging.getLogger(__name__)
+
 
 # # logger.info('Custom logger')
 
@@ -35,10 +36,23 @@ import logging
 
 # logger = logging.getLogger('simpleExample')
 # logger.debug('This is a debug message')
-import traceback
+# import traceback
 
-try:
-    a = [1,2,3]
-    val = a[4]
-except IndexError as e:
-    logging.error("This error is %s", traceback.format_exc())
+# try:
+#     a = [1,2,3]
+#     val = a[4]
+# except IndexError as e:
+#     logging.error("This error is %s", traceback.format_exc())
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# handler = RotatingFileHandler('app.log', maxBytes=2000, backupCount=5)
+handler = TimedRotatingFileHandler('time_test.log',when='s', interval=5, backupCount=5)
+
+logger.addHandler(handler)
+
+for _ in range(6):
+    logger.info('hello, world')
+    time.sleep(5)
