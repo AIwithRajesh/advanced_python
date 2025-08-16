@@ -42,14 +42,27 @@ class User():
 
 user = User("Alice", 29)
 
-def encode_user(obj):
-    if isinstance(obj, User):
-        return {
-            "name": obj.name,
-            "age": obj.age,
-            obj.__class__.__name__: "User"
-        }
-    else:
-        raise TypeError('Object of type is not json serializable')
+# def encode_user(obj):
+#     if isinstance(obj, User):
+#         return {
+#             "name": obj.name,
+#             "age": obj.age,
+#             obj.__class__.__name__: "User"
+#         }
+#     else:
+#         raise TypeError('Object of type is not json serializable')
 
-print(json.dumps(user, default=encode_user))
+from json import JSONEncoder
+class JsonEncode(JSONEncoder):
+    def default(self,obj):
+        if isinstance(obj, User):
+            return {
+                "name":obj.name,
+                "age": obj.age,
+                obj.__class__.__name__: True
+            }
+        return JSONEncoder.default(self, obj)
+    
+user = json.dumps(user, cls=JsonEncode)
+print(json.loads(user))
+# print(JsonEncode().encode(user))
