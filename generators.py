@@ -1,13 +1,13 @@
 import sys
 
-def mygenerator():
-    yield 4
-    yield 3
-    yield 2
-    yield 5
+# def mygenerator():
+#     yield 4
+#     yield 3
+#     yield 2
+#     yield 5
 
 
-res = mygenerator()
+# res = mygenerator()
 
 # value = next(res)
 # print(value)
@@ -42,7 +42,24 @@ def firstn_generator(n):
         yield num
         num += 1
 
-print(sys.getsizeof(firstn(100)))
-print(sys.getsizeof(firstn_generator(100)))
+# print(sys.getsizeof(firstn(100)))
+# print(sys.getsizeof(firstn_generator(100)))
 
 
+# fibonacci using generator
+# def fibonacci(limit):
+#     a, b = 0, 1
+#     while a < limit:
+#         yield a
+#         a , b = b, a + b
+
+# fb = fibonacci(100)
+# value = next(fb)
+# value = next(fb)
+# print(value)
+
+mygenerator = (i for i in range(100) if i % 2 ==0)
+print(sys.getsizeof(mygenerator))
+
+mylist = [i for i in range(100) if i % 2 == 0]
+print(sys.getsizeof(mylist))
