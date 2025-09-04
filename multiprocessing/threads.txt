@@ -1,0 +1,12 @@
+Threads: An entity within a process that can be scheduled (also known as "lightweight process)
+A process can spawn multiple Threads
+
++ All threads within a process share the same memory
++ lightweight
++ Starting a thread is faster than starting a process
++ Great for I/O-bound tasks
+
+- Threading is limited by GIL: only one thread at a time
+- No effect for CPU-bound tasks
+- Not interruptable/killable
+- Careful with race conditions
