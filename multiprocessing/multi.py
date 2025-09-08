@@ -1,6 +1,6 @@
 from multiprocessing import Process, Value, Array, Lock
 # from threading import Thread
-from multiprocessing import Queue
+from multiprocessing import Queue, Pool
 import os
 import time
 
@@ -59,30 +59,45 @@ def add_100(numbers, lock):
         # with lock:
         #     number.value += 1
 
-def square(numbers, queue):
-    for i in numbers:
-        queue.put(i*i)
+# def square(numbers, queue):
+#     for i in numbers:
+#         queue.put(i*i)
 
-def make_negative(numbers, queue):
-    for i in numbers:
-        queue.put(-1 * i)
+# def make_negative(numbers, queue):
+#     for i in numbers:
+#         queue.put(-1 * i)
+
+def cube(number):
+    return number * number * number
 
 if __name__ == '__main__':
 
-    numbers = range(1,6)
-    q = Queue()
+    numbers = range(10)
+    pool = Pool()
 
-    p1 = Process(target=square, args=(numbers, q))
-    p2 = Process(target=make_negative, args=(numbers, q))
+    # map, apply, join, close
 
-    p1.start()
-    p2.start()
+    result = pool.map(cube, numbers)
+    # result = pool.apply(cube, [numbers[6]])
 
-    p1.join()
-    p2.join()
+    pool.close()
+    pool.join()
+    print(result)
 
-    while not q.empty():
-        print(q.get())
+    # numbers = range(1,6)
+    # q = Queue()
+
+    # p1 = Process(target=square, args=(numbers, q))
+    # p2 = Process(target=make_negative, args=(numbers, q))
+
+    # p1.start()
+    # p2.start()
+
+    # p1.join()
+    # p2.join()
+
+    # while not q.empty():
+    #     print(q.get()) 
 
     # lock = Lock()
     # # shared_number = Value('i', 0)
