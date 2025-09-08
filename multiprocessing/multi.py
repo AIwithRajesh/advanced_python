@@ -52,9 +52,9 @@ import time
 def add_100(number, lock):
     for i in range(100):
         time.sleep(0.01)
-        lock.acquire()
-        number.value += 1
-        lock.release()
+        with lock:
+            number.value += 1
+
 
 if __name__ == '__main__':
     lock = Lock()
